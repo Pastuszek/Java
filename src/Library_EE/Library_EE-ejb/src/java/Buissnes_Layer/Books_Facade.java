@@ -45,11 +45,23 @@ public class Books_Facade implements Books_Facade_Remote {
         List<BookDTO> resultList = new ArrayList<>();
 
         for (Book book : books) {
-            BookDTO dto = new BookDTO(book.getName(), book.getDescription(), book.getISBN(), book.getImgUrl());
+            BookDTO dto = new BookDTO(book.getId(), book.getName(), book.getDescription(), book.getISBN(), book.getImgUrl());
             resultList.add(dto);
         }
 
         return resultList;
     }
 
+    @Override
+    public BookDTO GetBook(Long bookId) {
+        Book bookEntity = bookDatabaseFacade.find(bookId);
+
+        return new BookDTO(
+                bookEntity.getId(),
+                bookEntity.getName(),
+                bookEntity.getDescription(),
+                bookEntity.getISBN(),
+                bookEntity.getImgUrl()
+        );
+    }
 }

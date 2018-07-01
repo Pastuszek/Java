@@ -62,6 +62,7 @@ public class AddBookManagedBean implements Serializable {
     
     public void zapisz(){
         BookDTO dto = new BookDTO(
+                0L, // TOD konstruktor bez longa!
                 this.name,
                 this.description,
                 this.ISBN,

@@ -8,7 +8,8 @@ import java.io.Serializable;
  */
 public class BookDTO implements Serializable {
 
-    public BookDTO(String name, String description, String ISBN, String CoverLink) {
+    public BookDTO(Long id,String name, String description, String ISBN, String CoverLink) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.ISBN = ISBN;
@@ -18,6 +19,10 @@ public class BookDTO implements Serializable {
     private String name;
 
     private String description;
+
+    public Long getId() {
+        return id;
+    }
 
     private String ISBN;
 

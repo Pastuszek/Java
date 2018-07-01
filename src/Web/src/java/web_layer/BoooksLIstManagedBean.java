@@ -37,6 +37,10 @@ public class BoooksLIstManagedBean implements Serializable {
     public void setBookList(List<BookDTO> bookList) {
         this.bookList = bookList;
     }
+    
+      public String navigateToDetails() {
+        return "/faces/bookdetails";
+    }
 
     @PostConstruct
     public void init() {

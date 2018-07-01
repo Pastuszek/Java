@@ -18,4 +18,6 @@ public interface Books_Facade_Remote {
     void AddBook(BookDTO book);
     
     List<BookDTO> GetAllBooks();
+
+    public BookDTO GetBook(Long bookId);
 }
