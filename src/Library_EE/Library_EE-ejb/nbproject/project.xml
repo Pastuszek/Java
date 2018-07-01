@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://www.netbeans.org/ns/project/1">
-    <type>org.netbeans.modules.web.project</type>
+    <type>org.netbeans.modules.j2ee.ejbjarproject</type>
     <configuration>
-        <data xmlns="http://www.netbeans.org/ns/web-project/3">
-            <name>Web</name>
+        <data xmlns="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
+            <name>Library_EE-ejb</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
-            <web-module-libraries>
-                <library dirs="200">
-                    <file>${reference.Library_Interfaces.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
-                    <file>${reference.Library.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
-                    <file>${reference.Library_Interfaces.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-            </web-module-libraries>
-            <web-module-additional-libraries/>
+            <included-library dirs="200">reference.Library_Interface.jar</included-library>
+            <included-library dirs="200">reference.Library.jar</included-library>
             <source-roots>
                 <root id="src.dir" name="Source Packages"/>
             </source-roots>
@@ -37,7 +24,7 @@
                 <id>jar</id>
             </reference>
             <reference>
-                <foreign-project>Library_Interfaces</foreign-project>
+                <foreign-project>Library_Interface</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>

@@ -5,7 +5,10 @@
  */
 package web_layer;
 
+import Buissnes_Layer.Books_Facade_Remote;
+import BusinessLayer.DTO.BookDTO;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
@@ -17,8 +20,11 @@ import javax.inject.Named;
 @RequestScoped
 public class AddBookManagedBean implements Serializable {
 
+    @EJB
+    private Books_Facade_Remote books_Facade;
+    
     private String name;
-    private String iban;
+    private String ISBN;
     private String description;
     private String cover;
 
@@ -38,12 +44,12 @@ public class AddBookManagedBean implements Serializable {
         this.name = name;
     }
 
-    public String getIban() {
-        return iban;
+    public String getISBN() {
+        return ISBN;
     }
 
-    public void setIban(String iban) {
-        this.iban = iban;
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
     }
 
     public String getDescription() {
@@ -55,6 +61,12 @@ public class AddBookManagedBean implements Serializable {
     }
     
     public void zapisz(){
-        // Zapisanie ksiazki w bazie
+        BookDTO dto = new BookDTO(
+                this.name,
+                this.description,
+                this.ISBN,
+                this.cover);
+        
+        this.books_Facade.AddBook(dto);
     }
 }

@@ -10,10 +10,36 @@ import javax.persistence.Lob;
 @Entity
 public class Book extends BaseEntity {
 
+    private String description;
+
+    private String ISBN;
+
+    private String ImgUrl;
     private String name;
-    
-    @Lob
-    private String imageUrl;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    public String getImgUrl() {
+        return ImgUrl;
+    }
+
+    public void setImgUrl(String ImgUrl) {
+        this.ImgUrl = ImgUrl;
+    }
 
     public String getName() {
         return name;
@@ -23,11 +49,14 @@ public class Book extends BaseEntity {
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public Book() {
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public Book(String name, String description, String ISBN, String ImgUrl) {
+        this.description = description;
+        this.ISBN = ISBN;
+        this.ImgUrl = ImgUrl;
+        this.name = name;
     }
+
 }

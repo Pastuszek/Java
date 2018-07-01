@@ -5,3 +5,12 @@
 /src/Library/dist/
 /src/Library/nbproject/private/
 
+/src/Library_EE/nbproject/private/
+/src/Library_EE/Library_EE-ejb/nbproject/private/
+/src/Library_Interface/nbproject/private/
+/src/Library_Interface/build/
+/src/Library_EE/Library_EE-ejb/build/
+/src/Library_EE/build/
+/src/Library_Interface/dist/
+/src/Library_EE/Library_EE-ejb/dist/
+/src/Library_EE/dist/
