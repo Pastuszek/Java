@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <composite:interface>
+        <composite:attribute name="title" />
+        <composite:attribute name="description" />
+        <composite:attribute name="imgpath" />
+        <composite:attribute name="productid"/>
+        <composite:attribute name="price"/>
+    </composite:interface>
+
+    <composite:implementation >
+        <h:form>
+            #{cc.attrs.nameLable}
+            <div class="card productCard" style="width: 18rem;">
+                <img class="card-img-top" src="#{cc.attrs.imgpath}" height="150" width="300"></img>
+                <div class="card-body" style="height: 16rem;">
+                    <div class="card-title row">
+                        <div class="col col-md-9">   <h5 >#{cc.attrs.title}</h5></div>
+                        <div class="col col-md-3"> <span class="badge badge-success">#{cc.attrs.price}C</span></div>
+                    </div>
+                    <p class="card-text">#{cc.attrs.description}</p>
+                </div>
+                <div class="card-body">
+                    <h:link class="card-link" value="#{productCardMsg.details}" outcome="#{productList.navigateToDetails()}" includeViewParams="true">
+                        <f:param name="id" value="#{cc.attrs.productid}"></f:param>
+                    </h:link>
+                    <h:commandLink class="card-link" value="#{productCardMsg.addToBasket}" onclick="myAlertBottom()" action="#{basketManaged.addProductFromId(cc.attrs.productid)}">
+                        <f:ajax  render="@all @form"/>
+                    </h:commandLink>
+                </div>
+            </div>
+
+        </h:form>
+    </composite:implementation>
+</html>
