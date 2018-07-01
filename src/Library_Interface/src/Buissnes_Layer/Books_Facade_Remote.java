@@ -6,6 +6,7 @@
 package Buissnes_Layer;
 
 import BusinessLayer.DTO.BookDTO;
+import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -15,4 +16,6 @@ import javax.ejb.Remote;
 @Remote
 public interface Books_Facade_Remote {
     void AddBook(BookDTO book);
+    
+    List<BookDTO> GetAllBooks();
 }
