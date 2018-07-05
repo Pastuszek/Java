@@ -7,9 +7,12 @@ package web_layer;
 
 import Buissnes_Layer.Books_Facade_Remote;
 import BusinessLayer.DTO.BookDTO;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -60,14 +63,21 @@ public class AddBookManagedBean implements Serializable {
         this.description = description;
     }
     
-    public void zapisz(){
+    public void zapisz() throws IOException{
         BookDTO dto = new BookDTO(
                 0L, // TOD konstruktor bez longa!
                 this.name,
                 this.description,
                 this.ISBN,
-                this.cover);
+                this.cover,
+                false);
         
         this.books_Facade.AddBook(dto);
+        this.Redirect();
+    }
+    
+    private void Redirect()throws IOException{
+         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        context.redirect(context.getRequestContextPath() + "/faces/booklist.xhtml");
     }
 }

@@ -25,7 +25,12 @@
                                 <tr >
                                     <td>#{book.name}</td>
                                     <td>#{book.ISBN}</td>
-                                    <td>TU BEDZIE STATUS</td>
+                                    <td>
+                                        <h:outputText value="Wypozyczona" rendered="#{book.loan}" />
+                                        
+                                        <h:outputText value="Dostępna" rendered="#{!book.loan}" />
+                                        
+                                    </td>
                                     <td><h:link class="card-link" value="Szczegoly" outcome="#{bookListManaged.navigateToDetails()}" includeViewParams="true">
                                             <f:param name="id" value="#{book.id}"></f:param>
                                         </h:link></td>

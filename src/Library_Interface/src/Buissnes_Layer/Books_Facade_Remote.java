@@ -20,4 +20,8 @@ public interface Books_Facade_Remote {
     List<BookDTO> GetAllBooks();
 
     public BookDTO GetBook(Long bookId);
+
+    public void Loan(Long bookId);
+    
+    public void ReturnBack(Long bookId);
 }

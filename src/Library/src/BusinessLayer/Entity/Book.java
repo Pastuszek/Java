@@ -16,6 +16,16 @@ public class Book extends BaseEntity {
 
     private String ImgUrl;
     private String name;
+    
+    private Boolean IsLoan;
+
+    public Boolean getIsLoan() {
+        return IsLoan;
+    }
+
+    public void setIsLoan(Boolean IsLoan) {
+        this.IsLoan = IsLoan;
+    }
 
     public String getDescription() {
         return description;
@@ -52,11 +62,12 @@ public class Book extends BaseEntity {
     public Book() {
     }
 
-    public Book(String name, String description, String ISBN, String ImgUrl) {
+    public Book(String name, String description, String ISBN, String ImgUrl, Boolean isLoan) {
         this.description = description;
         this.ISBN = ISBN;
         this.ImgUrl = ImgUrl;
         this.name = name;
+        this.IsLoan = isLoan;
     }
 
 }

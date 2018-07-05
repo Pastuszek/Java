@@ -8,15 +8,25 @@ import java.io.Serializable;
  */
 public class BookDTO implements Serializable {
 
-    public BookDTO(Long id,String name, String description, String ISBN, String CoverLink) {
+    public BookDTO(Long id,String name, String description, String ISBN, String CoverLink, Boolean loan) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.ISBN = ISBN;
         this.CoverLink = CoverLink;
+        this.Loan = loan;
     }
 
     private String name;
+    private Boolean Loan;
+
+    public Boolean getLoan() {
+        return Loan;
+    }
+
+    public void setLoan(Boolean Loan) {
+        this.Loan = Loan;
+    }
 
     private String description;
 

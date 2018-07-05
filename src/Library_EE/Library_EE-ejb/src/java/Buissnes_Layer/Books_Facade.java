@@ -32,7 +32,8 @@ public class Books_Facade implements Books_Facade_Remote {
                         book.getName(),
                         book.getDescription(),
                         book.getISBN(),
-                        book.getCoverLink()
+                        book.getCoverLink(),
+                        book.getLoan()
                 )
         );
 
@@ -45,7 +46,7 @@ public class Books_Facade implements Books_Facade_Remote {
         List<BookDTO> resultList = new ArrayList<>();
 
         for (Book book : books) {
-            BookDTO dto = new BookDTO(book.getId(), book.getName(), book.getDescription(), book.getISBN(), book.getImgUrl());
+            BookDTO dto = new BookDTO(book.getId(), book.getName(), book.getDescription(), book.getISBN(), book.getImgUrl(), book.getIsLoan());
             resultList.add(dto);
         }
 
@@ -61,7 +62,22 @@ public class Books_Facade implements Books_Facade_Remote {
                 bookEntity.getName(),
                 bookEntity.getDescription(),
                 bookEntity.getISBN(),
-                bookEntity.getImgUrl()
+                bookEntity.getImgUrl(),
+                bookEntity.getIsLoan()
         );
+    }
+
+    @Override
+    public void Loan(Long bookId) {
+       Book book = this.bookDatabaseFacade.find(bookId);
+       book.setIsLoan(Boolean.TRUE);
+       this.bookDatabaseFacade.edit(book);
+    }
+
+    @Override
+    public void ReturnBack(Long bookId) {
+       Book book = this.bookDatabaseFacade.find(bookId);
+       book.setIsLoan(Boolean.FALSE);
+       this.bookDatabaseFacade.edit(book);
     }
 }

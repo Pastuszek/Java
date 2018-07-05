@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
@@ -14,7 +15,7 @@ import javax.inject.Named;
  * @author pmozola
  */
 @Named(value = "bookListManaged")
-@SessionScoped
+@RequestScoped
 public class BoooksLIstManagedBean implements Serializable {
 
     @EJB
