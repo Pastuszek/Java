@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -21,7 +23,7 @@ import javax.inject.Named;
  * @author Pawel
  */
 @Named(value = "bookManaged")
-@SessionScoped
+@SessionScoped 
 public class BookManagedBean implements Serializable {
 
     @EJB
@@ -42,24 +44,30 @@ public class BookManagedBean implements Serializable {
     }
 
     public BookManagedBean() {
-        String id = FacesContext
-                .getCurrentInstance()
-                .getExternalContext()
-                .getRequestParameterMap()
-                .get("id");
-
-        this.bookId = Long.parseLong(id);
     }
 
     @PostConstruct
     public void init() {
-        BookDTO bookDTO = this.books_Facade.GetBook(this.bookId);
+         String id = FacesContext
+                .getCurrentInstance()
+                .getExternalContext()
+                .getRequestParameterMap()
+                .get("id");
+        if (id == null) {
+            this.bookId = 0l;
+        } else {
+            this.bookId = Long.parseLong(id);
+        }
+        if (this.bookId != 0l) {
+                  BookDTO bookDTO = this.books_Facade.GetBook(this.bookId);
 
         this.description = bookDTO.getDescription();
         this.name = bookDTO.getName();
         this.imgPath = bookDTO.getCoverLink();
         this.isbn = bookDTO.getISBN();
         this.isLoan = bookDTO.getLoan();
+        }
+  
     }
 
     public Books_Facade_Remote getBooks_Facade() {
@@ -110,20 +118,20 @@ public class BookManagedBean implements Serializable {
         this.bookId = bookId;
     }
 
-    public void Loan() throws IOException {
-        this.books_Facade.Loan(this.bookId);
+    public void Loan(Long id) throws IOException {
+        this.books_Facade.Loan(id);
         this.isLoan = true;
-       this.Redirect();
+        this.Redirect();
     }
 
-    public void ReturnBack() throws IOException {
-        this.books_Facade.ReturnBack(bookId);
+    public void ReturnBack(Long id) throws IOException {
+        this.books_Facade.ReturnBack(id);
         this.isLoan = false;
-         this.Redirect();
+        this.Redirect();
     }
-    
-    private void Redirect()throws IOException{
-         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+
+    private void Redirect() throws IOException {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         context.redirect(context.getRequestContextPath() + "/faces/booklist.xhtml");
     }
 }

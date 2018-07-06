@@ -25,6 +25,7 @@ public class BoooksLIstManagedBean implements Serializable {
     
     private List<BookDTO> bookList;
     private Integer filterValue;
+    private BookListFilterDTO filterDTO;
 
     public Integer getFilterValue() {
         return filterValue;
@@ -43,7 +44,7 @@ public class BoooksLIstManagedBean implements Serializable {
     }
 
     public List<BookDTO> getBookList() {
-        return bookList;
+        return this.booksFacade.GetBooks(this.filterDTO);
     }
 
     public void setBookList(List<BookDTO> bookList) {
@@ -64,11 +65,13 @@ public class BoooksLIstManagedBean implements Serializable {
               
               filter = BookListFilterDTO.All;
           }
+          this.filterDTO = filter;
           this.bookList = this.booksFacade.GetBooks(filter);
       }
 
     @PostConstruct
     public void init() {
         this.bookList = this.booksFacade.GetAllBooks();
+        this.filterDTO = BookListFilterDTO.All;
     }
 }

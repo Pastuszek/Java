@@ -3,13 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">>
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">>
     <ui:composition template="./template.xhtml">
         <ui:define name="title">
             #{bundle.websiteTitle}
         </ui:define>
         <ui:define name="content">
             <div class="container">
+                <f:event type="preRenderView" listener="#{bookManaged.init()}" />
                 <div class="row">
                     <div class="col-4">
                         <img src="#{bookManaged.imgPath}" alt="Okladka" height="300" width="200"></img>
@@ -26,13 +28,13 @@
                             <h:panelGroup rendered="#{bookManaged.isLoan == false}">
                                 <h:commandButton value="Wypozycz"
                                                  class="btn btn-success"
-                                                 action = "#{bookManaged.Loan()}"/>
+                                                 action = "#{bookManaged.Loan(bookManaged.bookId)}"/>
 
                             </h:panelGroup>
                             <h:panelGroup rendered="#{bookManaged.isLoan != false}">
                                 <h:commandButton value="Zwróc"
                                           class="btn btn-success"
-                                          action = "#{bookManaged.ReturnBack()}"/>
+                                          action = "#{bookManaged.ReturnBack(bookManaged.bookId)}"/>
                             </h:panelGroup>
                         </h:form>
                     </div>
