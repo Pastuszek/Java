@@ -11,6 +11,22 @@
         <ui:define name="content">
             <div class="container">
                 <div class="row justify-content-md-center">
+                    <h:form class="form-inline">
+                        <div class="form-group mb-2">
+                            <label for="staticEmail2" class="sr-only">Pokaż:</label>
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <h:selectOneMenu value="#{bookListManaged.filterValue}">
+                                <f:selectItem itemValue="1" itemLabel="Wszystkie" />
+                                <f:selectItem itemValue="2" itemLabel="Wypozyczone" />
+                                <f:selectItem itemValue="3" itemLabel="Dostępne" />
+                            </h:selectOneMenu>
+                        </div>
+                        <h:commandButton class="btn btn-primary mb-2" value="Filtruj" action="#{bookListManaged.Filter()}">
+                            <f:ajax execute="@form" render="@all @form" />
+                        </h:commandButton>
+                    </h:form>
+
                     <table class="table">
                         <thead class="thead-light">
                             <tr>
@@ -27,9 +43,9 @@
                                     <td>#{book.ISBN}</td>
                                     <td>
                                         <h:outputText value="Wypozyczona" rendered="#{book.loan}" />
-                                        
+
                                         <h:outputText value="Dostępna" rendered="#{!book.loan}" />
-                                        
+
                                     </td>
                                     <td><h:link class="card-link" value="Szczegoly" outcome="#{bookListManaged.navigateToDetails()}" includeViewParams="true">
                                             <f:param name="id" value="#{book.id}"></f:param>

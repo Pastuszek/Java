@@ -5,6 +5,7 @@
  */
 package Integration_layer_ejb;
 
+import BusinessLayer.DTO.BookDTO;
 import BusinessLayer.Entity.Book;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +30,10 @@ public interface BookFacadeLocal {
     List<Book> findRange(int[] range);
 
     int count();
+
+
+    public List<Book> GetAvabileBook();
+
+    public List<Book> GetLoanBook();
     
 }

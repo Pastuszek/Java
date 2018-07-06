@@ -6,6 +6,7 @@
 package Buissnes_Layer;
 
 import BusinessLayer.DTO.BookDTO;
+import BusinessLayer.DTO.BookListFilterDTO;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -24,4 +25,6 @@ public interface Books_Facade_Remote {
     public void Loan(Long bookId);
     
     public void ReturnBack(Long bookId);
+
+    public List<BookDTO> GetBooks(BookListFilterDTO filter);
 }
